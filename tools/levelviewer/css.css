@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+*{
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body,
+html {
+    margin: 0;
+    background-color: #4c75ff !important;
+    overflow: hidden;
+}
+
+#menu {
+    position: absolute;
+    display: block;
+}
+
+#menu * {
+    margin: 4px;
+    display: inline-block;
+}
+
+#menu p {
+    margin-right: 0px !important;
+}
+
+#myProgress {
+    width: 50vw;
+    background-color: #ffffff;
+    margin-left: 25vw;
+    position:absolute;
+    top: 50vh;
+}
+
+#myBar {
+    width: 400px;
+    height: 30px;
+    background-color: #4CAF50;
+}
+
+#bulabel {
+    width:174px!important;
+}
+
+.buttonFu{
+    outline: none;
+    width:200px;
+    text-align: center;
+    font-size: 10px;
+    color:white;
+    padding: 10px;
+    border: white solid;
+    background: rgba(0, 0, 0, 0.22);
+    transition: background 0.08s;
+}
+
+.buttonFu:hover{
+    outline: none;
+    color:white;
+    padding: 10px;
+    border: white solid;
+    cursor:pointer;
+    background: rgba(0, 0, 0, 0.473);
+}
+
+.buttonFu:focus{
+    outline: none;
+    color:white;
+    padding: 10px;
+    border: white solid;
+    cursor:pointer;
+    background: rgba(0, 0, 0, 0.473);
+}

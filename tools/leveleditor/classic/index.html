@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Kula Workshop Level Editor</title>
+        <meta name="author" content="Murphy and SaturnKai">
+        <meta name="description" content="Create and edit levels from and for Kula World.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="menu">
+            <div id="menu-bar">
+                <img id="export" src="ui/Export.png">
+                <img id="open" src="ui/Open.png">
+                <img id="options" src="ui/Options.png">
+                <img id="add" src="ui/Add Block.png" style="margin-left: 12px;">
+                <img id="remove" src="ui/Remove Block.png">
+                <img id="regular" src="ui/Regular.png" style="margin-left: 12px;">
+                <img id="fire" src="ui/Fire.png">
+                <img id="ice" src="ui/Ice.png">
+                <img id="invisible" src="ui/Invisible.png">
+                <img id="acid" src="ui/Acid.png">
+                <img id="show-bounds" src="ui/Bounds.png" style="margin-left: 12px;">
+                <img id="selection-bounds" src="ui/Selection Bounds.png">
+                <img id="no-bounds" src="ui/No Bounds.png">
+                <img id="hiro" src="ui/Hiro.png" style="margin-left: 12px;" class="selected">
+                <img id="hills" src="ui/Hills.png">
+                <img id="inca" src="ui/Inca.png">
+                <img id="arctic" src="ui/Arctic.png">
+                <img id="cowboy" src="ui/Cowboy.png">
+                <img id="field" src="ui/Field.png">
+                <img id="atlantis" src="ui/Atlantis.png">
+                <img id="haze" src="ui/Haze.png">
+                <img id="mars" src="ui/Mars.png">
+                <img id="hell" src="ui/Hell.png">
+                <a href="https://github.com/Kula-Workshop/KulaWorkshopLevelEditor" target="_blank"><img src="ui/Github.png" style="margin-left: 12px;"></a>
+                <input type="file" id="browse" style="display: none;">
+            </div>
+            <div id="block-bar" style="display: none;">
+                <div class="block" id="block-type" style="border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                    <p style="text-decoration: underline">Block</p>
+                    <div><img height="64" style="display: none;"></div>
+                    <select id="edit-block-type">
+                        <option value="0">Normal</option>
+                        <option value="1">Fire</option>
+                        <option value="2">Ice</option>
+                        <option value="3">Invisible</option>
+                        <option value="4">Acid</option>
+                        <option value="5">Moving</option>
+                        <option value="6">Crumbling</option>
+                        <option value="7">Flashing</option>
+                        <option value="8">Laser</option>
+                    </select>
+                </div>
+                <div id="block-group" style="display: inline-block">
+                    <div class="block">
+                        <p style="text-decoration: underline; text-decoration-color: #F00;">Positive X</p>
+                        <div class="selectable-item" id="selectPX"><img height="64" style="display: none;"></div>
+                        <select id="editPX"><option value="0">None</option></select>
+                    </div>
+                    <div class="block">
+                        <p style="text-decoration: underline; text-decoration-color: #F00;">Negative X</p>
+                        <div class="selectable-item" id="selectNX"><img height="64" style="display: none;"></div>
+                        <select id="editNX"><option value="0">None</option></select>
+                    </div>
+                    <div class="block">
+                        <p style="text-decoration: underline; text-decoration-color: #0F0;">Positive Y</p>
+                        <div class="selectable-item" id="selectPY"><img height="64" style="display: none;"></div>
+                        <select id="editPY"><option value="0">None</option></select>
+                    </div>
+                    <div class="block">
+                        <p style="text-decoration: underline; text-decoration-color: #0F0;">Negative Y</p>
+                        <div class="selectable-item" id="selectNY"><img height="64" style="display: none;"></div>
+                        <select id="editNY"><option value="0">None</option></select>
+                    </div>
+                    <div class="block">
+                        <p style="text-decoration: underline; text-decoration-color: #00F;">Positive Z</p>
+                        <div class="selectable-item" id="selectPZ"><img height="64" style="display: none;"></div>
+                        <select id="editPZ"><option value="0">None</option></select>
+                    </div>
+                    <div class="block" style="border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                        <p style="text-decoration: underline; text-decoration-color: #00F;">Negative Z</p>
+                        <div class="selectable-item" id="selectNZ"><img height="64" style="display: none;"></div>
+                        <select id="editNZ"><option value="0">None</option></select>
+                    </div>
+
+                    <div class="option moving-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Connect</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <button id='edit-moving-connection'>Attach</button>
+                    </div>
+                    <div class="option moving-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Length</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <select id="edit-moving-length">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="option moving-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Speed</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <input id="edit-moving-speed" type="number" min="0" max="510" value="0"></option>
+                    </div>
+
+                    <div class="option flashing-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Timing</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <select id="edit-flashing-index">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    <div class="option laser-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Connect</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <button id='edit-laser-connection'>Attach</button>
+                    </div>
+                    <div class="option laser-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Color</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <select id="edit-laser-color">
+                            <option value="0">Yellow</option>
+                            <option value="1">Blue</option>
+                            <option value="2">Green</option>
+                            <option value="3">Red</option>
+                        </select>
+                    </div>
+                    <div class="option laser-option" style="display: none; border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Enabled</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <select id="edit-laser-enabled">
+                            <option value="1">True</option>
+                            <option value="0">False</option>
+                        </select>
+                    </div>
+                    <div class="option laser-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Power</p>
+                        <div><img height="64" style="display: none;"></div>
+                        <button id='edit-laser-power'>Attach</button>
+                    </div>
+
+                    <div class="option transporter-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Connect</p>
+                        <div><img height="64"></div>
+                        <button id='edit-transporter-connection'>Attach</button>
+                    </div>
+                    <div class="option transporter-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Color</p>
+                        <div><img height="64"></div>
+                        <select id="edit-transporter-color">
+                            <option value="0">Yellow</option>
+                            <option value="1">Blue</option>
+                            <option value="2">Green</option>
+                            <option value="3">Red</option>
+                        </select>
+                    </div>
+                    <div class="option transporter-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Enabled</p>
+                        <div><img height="64"></div>
+                        <select id="edit-transporter-enabled">
+                            <option value="1">True</option>
+                            <option value="2">False</option>
+                        </select>
+                    </div>
+                    <div class="option transporter-option" style="display: none; border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64"></div>
+                        <select id="edit-transporter-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+                    <div class="option transporter-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Power</p>
+                        <div><img height="64"></div>
+                        <button id='edit-transporter-power'>Attach</button>
+                    </div>
+
+                    <div class="option button-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Color</p>
+                        <div><img height="64"></div>
+                        <select id="edit-button-color">
+                            <option value="0">Yellow</option>
+                            <option value="1">Blue</option>
+                            <option value="2">Green</option>
+                            <option value="3">Red</option>
+                        </select>
+                    </div>
+                    <div class="option button-option" style="display: none; border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Enabled</p>
+                        <div><img height="64"></div>
+                        <select id="edit-button-enabled">
+                            <option value="1">True</option>
+                            <option value="2">False</option>
+                        </select>
+                    </div>
+                    <div class="option button-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Power</p>
+                        <div><img height="64"></div>
+                        <button id='edit-button-power-1'>Attach</button>
+                    </div>
+                    <div class="option button-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Power</p>
+                        <div><img height="64"></div>
+                        <button id='edit-button-power-2'>Attach</button>
+                    </div>
+
+                    <div class="option moving-spike-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Timing</p>
+                        <div style="background-image: url(./textures/tilesets/HIRO/MOVING_SPIKE_TILE.png);"><img height="64" style="display: none;"></div>
+                        <select id="edit-moving-spike-index">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    <div class="option arrow-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64" style="display: inline;" src="sprites/28.png"></div>
+                        <select id="edit-arrow-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="option player-spawn-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64" style="display: inline;" src="sprites/30.png"></div>
+                        <select id="edit-player-spawn-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="option slow-star-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64" style="display: inline;" src="sprites/50.png"></div>
+                        <select id="edit-slow-star-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="option tire-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64" style="display: inline;" src="sprites/51.png"></div>
+                        <select id="edit-tire-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="option fast-star-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Rotation</p>
+                        <div><img height="64" style="display: inline;" src="sprites/52.png"></div>
+                        <select id="edit-fast-star-rotation">
+                            <option value="4">+X</option>
+                            <option value="2">-X</option>
+                            <option value="1">+Z</option>
+                            <option value="3">-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="option captivator-option" style="display: none;">
+                        <p style="text-decoration: underline; text-decoration-color: #A020F0;">Timing</p>
+                        <div><img height="64" style="display: inline;" src="sprites/56.png"></div>
+                        <select id="edit-captivator-index">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="level-options" class="popup">
+                <div class="popup-content">
+                    <div class="popup-header"><p>Level Options</p></div>
+                    <div class="popup-body">
+                        <input class="level-option" id="edit-level-time" type="number" min="0" max="510" value="99">Starting Level Time</option><br>
+                        <input class="level-option" id="edit-secret-level" type="checkbox">Hidden Level</input><br>
+                        <input class="level-option" id="edit-far" type="checkbox">Far Sighted Invisible Blocks</input>
+                    </div>
+                </div>
+            </div>
+
+            <div id="block-side-selections" class="popup">
+                <div class="popup-content2">
+                    <div class="popup-header"><p>Select A Side</p></div>
+                    <div class="popup-body2">
+                        <div class="block">
+                            <p style="text-decoration: underline; text-decoration-color: #F00;">Positive X</p>
+                            <div class="selectable-item" id="selectPX"><img height="64"></div>
+                            <button class="side-selection" id="select-side-px">Select</button>
+                        </div>
+                        <div class="block">
+                            <p style="text-decoration: underline; text-decoration-color: #F00;">Negative X</p>
+                            <div class="selectable-item" id="selectNX"><img height="64"></div>
+                            <button class="side-selection" id="select-side-nx">Select</button>
+                        </div>
+                        <div class="block">
+                            <p style="text-decoration: underline; text-decoration-color: #0F0;">Positive Y</p>
+                            <div class="selectable-item" id="selectPY"><img height="64"></div>
+                            <button class="side-selection" id="select-side-py">Select</button>
+                        </div>
+                        <div class="block">
+                            <p style="text-decoration: underline; text-decoration-color: #0F0;">Negative Y</p>
+                            <div class="selectable-item" id="selectNY"><img height="64"></div>
+                            <button class="side-selection" id="select-side-ny">Select</button>
+                        </div>
+                        <div class="block">
+                            <p style="text-decoration: underline; text-decoration-color: #00F;">Positive Z</p>
+                            <div class="selectable-item" id="selectPZ"><img height="64"></div>
+                            <button class="side-selection" id="select-side-pz">Select</button>
+                        </div>
+                        <div class="block" style="border-right: 1px solid #404040; padding-right: 22px; margin-right: 11px;">
+                            <p style="text-decoration: underline; text-decoration-color: #00F;">Negative Z</p>
+                            <div class="selectable-item" id="selectNZ"><img height="64"></div>
+                            <button class="side-selection" id="select-side-nz">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="error-alert" class="alert" style="display: none;"><span class="alert-button">&times;</span></div>
+            <div id="success-alert" class="alert" style="display: none;"><span class="alert-button">&times;</span></div>
+            <div id="info-alert" class="alert" style="display: none;"><span class="alert-button">&times;</span></div>
+        <script src="editor.js" type="module"></script>
+    </body>
+</html>
